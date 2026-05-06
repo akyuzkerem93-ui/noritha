@@ -8,107 +8,73 @@
 <style>
 body{
     margin:0;
-    font-family: system-ui, -apple-system, Arial;
-    background: #0b1220;
-    color: #e5e7eb;
+    font-family: system-ui;
+    background:#0b1220;
+    color:#e5e7eb;
+    overflow-x:hidden;
 }
 
-/* Üst bölüm */
+/* HERO */
 .hero{
-    padding: 90px 20px;
-    text-align: center;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
     background: linear-gradient(135deg, #0f172a, #111827);
 }
 
 .hero h1{
-    font-size: 52px;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    font-size:60px;
+    margin:0;
 }
 
 .hero p{
-    font-size: 18px;
-    opacity: 0.75;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
+    opacity:0.7;
+    max-width:600px;
+    line-height:1.6;
 }
 
-.button{
-    margin-top: 25px;
-    display: inline-block;
-    padding: 12px 26px;
-    background: #38bdf8;
-    color: #0b1220;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.button:hover{
-    background:#0ea5e9;
-}
-
-/* Bölüm */
+/* SECTIONS */
 .section{
-    padding: 70px 20px;
-    text-align: center;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:60px 20px;
+
+    opacity:0;
+    transform: translateY(60px);
+    transition: all 1s ease;
 }
 
-.section h2{
-    font-size: 28px;
-    margin-bottom: 10px;
-}
-
-.section p{
-    opacity: 0.7;
-    max-width: 650px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
-}
-
-/* Kartlar */
-.cards{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
+.section.show{
+    opacity:1;
+    transform: translateY(0);
 }
 
 .card{
     background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 20px;
-    width: 240px;
-    border-radius: 14px;
-    text-align: left;
-    transition: 0.3s;
+    padding:20px;
+    margin:10px;
+    border-radius:12px;
+    width:250px;
 }
 
-.card:hover{
-    transform: translateY(-5px);
-    background: rgba(255,255,255,0.08);
+.container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-.card h3{
-    margin-bottom: 8px;
-    font-size: 18px;
-}
-
-.card p{
-    font-size: 14px;
-    opacity: 0.7;
-    line-height: 1.5;
-}
-
-/* Alt */
+/* FOOTER */
 footer{
     text-align:center;
-    padding: 30px;
-    font-size: 13px;
-    opacity: 0.5;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    padding:40px;
+    opacity:0.5;
 }
 </style>
 
@@ -118,37 +84,47 @@ footer{
 
 <div class="hero">
     <h1>Noritha</h1>
-    <p>Minimal, modern ve sade bir web deneyimi. Düşünülmüş detaylar, temiz tasarım ve hızlı performans.</p>
-    <a class="button" href="#">Keşfet</a>
+    <p>Minimal, modern ve akıcı bir web deneyimi.</p>
 </div>
 
 <div class="section">
     <h2>Hakkında</h2>
-    <p>Bu site sade tasarım prensipleriyle oluşturulmuştur. Gereksiz hiçbir şey yok, sadece odak ve netlik var.</p>
+    <p>Bu site modern scroll animasyonları ile hazırlanmıştır.</p>
+</div>
 
-    <div class="cards">
-
-        <div class="card">
-            <h3>Temiz Tasarım</h3>
-            <p>Göz yormayan, modern ve sade bir arayüz yapısı.</p>
-        </div>
-
-        <div class="card">
-            <h3>Hızlı Yapı</h3>
-            <p>Optimize edilmiş kod yapısı sayesinde hızlı açılır.</p>
-        </div>
-
-        <div class="card">
-            <h3>Mobil Uyumlu</h3>
-            <p>Tüm cihazlarda düzgün görünen esnek yapı.</p>
-        </div>
-
+<div class="section">
+    <h2>Özellikler</h2>
+    <div class="container">
+        <div class="card">Temiz Tasarım</div>
+        <div class="card">Hızlı Yapı</div>
+        <div class="card">Mobil Uyum</div>
     </div>
 </div>
 
+<div class="section">
+    <h2>İletişim</h2>
+    <p>Bize ulaşmak için aşağı kaydırmanız yeterli.</p>
+</div>
+
 <footer>
-    © 2026 Noritha — Tüm hakları saklıdır
+    © 2026 Noritha
 </footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+
+window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.85;
+
+    sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+
+        if(top < trigger){
+            sec.classList.add('show');
+        }
+    });
+});
+</script>
 
 </body>
 </html>
