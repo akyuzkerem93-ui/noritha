@@ -15,7 +15,6 @@ body{
     font-family:Arial, sans-serif;
 }
 
-/* HEADER */
 header{
     position:fixed;
     width:100%;
@@ -40,34 +39,31 @@ nav a{
     font-size:13px;
 }
 
-/* HERO */
+/* 🔥 BURASI DEĞİŞTİ */
 .hero{
     position:relative;
-    height:100vh;
+    height:85vh;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
     color:#fff;
     overflow:hidden;
+    background:#000;
 }
 
 .bg-video{
     position:absolute;
-    top:0;
-    left:0;
+    inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    z-index:-2;
 }
 
 .overlay{
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     background:rgba(0,0,0,0.4);
-    z-index:-1;
 }
 
 .hero h1{
@@ -77,16 +73,15 @@ nav a{
 }
 
 .hero p{
-    margin-top:18px;
+    margin-top:15px;
     letter-spacing:4px;
     font-size:13px;
-    text-transform:uppercase;
 }
 
-/* ANIMATION */
+/* SCROLL */
 .fade-section{
     opacity:0;
-    transform:translateY(40px);
+    transform:translateY(45px);
     transition:0.8s ease;
 }
 
@@ -114,7 +109,6 @@ nav a{
     line-height:1.7;
 }
 
-/* CONTACT */
 .contact{
     padding:120px 10%;
     background:#f5f5f5;
@@ -126,7 +120,6 @@ nav a{
     margin-bottom:40px;
 }
 
-/* INPUT */
 .input-box{
     position:relative;
     margin-bottom:20px;
@@ -154,17 +147,12 @@ nav a{
     outline:none;
 }
 
-.input-box:focus-within{
-    box-shadow:0 0 20px rgba(0,200,255,0.6);
-}
-
 @keyframes neonMove{
     0%{background-position:0% 50%;}
     50%{background-position:100% 50%;}
     100%{background-position:0% 50%;}
 }
 
-/* BUTTON */
 button{
     width:100%;
     padding:16px;
@@ -175,24 +163,14 @@ button{
     letter-spacing:2px;
 }
 
-button:hover{
-    background:#333;
-}
-
-button:disabled{
-    opacity:0.7;
-}
-
-/* MESSAGE */
 #formMessage{
     display:none;
     text-align:center;
     margin-top:15px;
 }
 
-/* FOOTER */
 footer{
-    padding:80px;
+    padding:20px;
     text-align:center;
     background:#000;
     color:white;
@@ -200,16 +178,43 @@ footer{
 
 footer small{
     display:block;
-    margin-top:10px;
+    margin-top:8px;
     font-size:12px;
     color:#aaa;
 }
 
-/* MOBILE */
+/* 🔥 MOBİL FIX */
 @media(max-width:768px){
-    nav{display:none;}
-    .hero h1{font-size:45px;}
-    .hero p{font-size:11px;}
+    header{
+        padding:15px;
+        align-items:center;
+    }
+
+    .logo{
+        font-size:20px;
+    }
+
+    nav{
+        display:flex;
+        gap:10px;
+    }
+
+    nav a{
+        margin-left:0;
+        font-size:10px;
+    }
+
+    .hero{
+        height:75vh;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero p{
+        font-size:10px;
+    }
 }
 </style>
 </head>
@@ -222,6 +227,7 @@ footer small{
         <a href="#about">Hakkımda</a>
         <a href="#contact">İletişim</a>
         <a href="#destek">Destek</a>
+        <a href="https://www.linkedin.com/in/kerem-akyüz-a1815737b" target="_blank">LinkedIn</a>
     </nav>
 </header>
 
@@ -229,11 +235,12 @@ footer small{
     <video autoplay muted loop playsinline class="bg-video">
         <source src="video.mp4" type="video/mp4">
     </video>
+
     <div class="overlay"></div>
 
     <div>
         <h1>NORITHA</h1>
-        <p>Minimal • Modern • Personal</p>
+        <p>Minimal • Modern • Özgür</p>
     </div>
 </section>
 
@@ -293,32 +300,21 @@ form.addEventListener("submit", async function(e) {
     try {
         const response = await fetch(form.action, {
             method: form.method,
-            body: formData,
-            headers: { "Accept": "application/json" }
+            body: formData
         });
 
         if (response.ok) {
             message.style.display = "block";
-            message.style.color = "green";
-            message.textContent = "Mesajınız başarıyla gönderildi.";
+            message.textContent = "Mesajınız gönderildi.";
             form.reset();
-        } else {
-            message.style.display = "block";
-            message.style.color = "red";
-            message.textContent = "Bir hata oluştu.";
         }
-
-    } catch (error) {
-        message.style.display = "block";
-        message.style.color = "red";
-        message.textContent = "Bağlantı hatası.";
-    }
+    } catch (error) {}
 
     button.disabled = false;
     button.textContent = "GÖNDER";
 });
 
-/* 🔄 SÜREKLİ SCROLL ANİMASYON */
+/* SCROLL */
 const sections = document.querySelectorAll(".fade-section");
 
 const observer = new IntersectionObserver(entries => {
@@ -329,7 +325,7 @@ const observer = new IntersectionObserver(entries => {
             entry.target.classList.remove("show");
         }
     });
-}, { threshold: 0.2 });
+});
 
 sections.forEach(section => observer.observe(section));
 </script>
