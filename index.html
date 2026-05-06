@@ -51,7 +51,6 @@ nav a{
     font-size:13px;
 }
 
-/* 🔥 PC FIX */
 .hero{
     position:relative;
     height:100vh;
@@ -96,16 +95,18 @@ nav a{
     opacity:0.85;
 }
 
-/* ANIMATION */
+/* 🔥 GÜÇLENDİRİLMİŞ ANİMASYON */
 .fade-section{
     opacity:0;
-    transform:translateY(45px);
-    transition:0.8s ease;
+    transform:translateY(80px) scale(0.96);
+    filter:blur(6px);
+    transition:all 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fade-section.show{
     opacity:1;
-    transform:translateY(0);
+    transform:translateY(0) scale(1);
+    filter:blur(0);
 }
 
 .section{
@@ -200,7 +201,6 @@ footer small{
     color:#aaa;
 }
 
-/* MOBİL AYNI */
 @media(max-width:768px){
     header{
         padding:15px;
@@ -311,7 +311,6 @@ footer small{
 </footer>
 
 <script>
-/* SCROLL ANİMASYON */
 const sections = document.querySelectorAll(".fade-section");
 
 const observer = new IntersectionObserver(entries => {
@@ -326,7 +325,6 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
-/* HEADER SCROLL */
 window.addEventListener("scroll", function(){
     const header = document.querySelector("header");
 
