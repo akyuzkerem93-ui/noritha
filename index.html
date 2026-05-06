@@ -11,7 +11,7 @@
 body{
     background:#fff;
     color:#000;
-    font-family: Arial, sans-serif;
+    font-family:Arial, sans-serif;
 }
 
 header{
@@ -23,6 +23,7 @@ header{
     justify-content:space-between;
     align-items:center;
     background:rgba(255,255,255,0.9);
+    z-index:10;
 }
 
 .logo{
@@ -38,7 +39,6 @@ nav a{
     font-size:14px;
 }
 
-/* HERO */
 .hero{
     height:100vh;
     background:
@@ -56,7 +56,6 @@ nav a{
     letter-spacing:5px;
 }
 
-/* CONTACT */
 .contact{
     padding:100px 60px;
     background:#f5f5f5;
@@ -81,15 +80,11 @@ form{
     gap:20px;
 }
 
-.input-group{
-    width:100%;
-    margin-bottom:20px;
-}
-
 input, textarea{
     width:100%;
     padding:15px;
     border:1px solid #ccc;
+    margin-bottom:20px;
 }
 
 button{
@@ -99,9 +94,13 @@ button{
     color:white;
     border:none;
     cursor:pointer;
+    letter-spacing:2px;
 }
 
-/* FOOTER */
+button:hover{
+    background:#333;
+}
+
 footer{
     padding:70px;
     text-align:center;
@@ -118,7 +117,9 @@ footer small{
 
 @media(max-width:768px){
     nav{display:none;}
-    .row{flex-direction:column;}
+    .row{flex-direction:column;gap:0;}
+    .hero h1{font-size:45px;}
+    .contact{padding:70px 25px;}
 }
 </style>
 </head>
@@ -140,14 +141,14 @@ footer small{
 <section class="contact" id="contact">
     <h2>Bana Ulaşın</h2>
 
-    <form>
+    <form action="https://formspree.io/f/xvzlrydr" method="POST">
         <div class="row">
-            <input type="text" placeholder="Ad Soyad" required>
-            <input type="email" placeholder="E-posta" required>
+            <input type="text" name="ad_soyad" placeholder="Ad Soyad" required>
+            <input type="email" name="email" placeholder="E-posta" required>
         </div>
 
-        <input type="text" placeholder="Konu" required>
-        <textarea rows="6" placeholder="Mesajınız" required></textarea>
+        <input type="text" name="konu" placeholder="Konu" required>
+        <textarea name="mesaj" rows="6" placeholder="Mesajınız" required></textarea>
 
         <button type="submit">GÖNDER</button>
     </form>
