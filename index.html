@@ -41,31 +41,38 @@ nav a{
 
 .hero{
     position:relative;
+    width:100%;
     height:100vh;
+    min-height:100vh;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
     color:#fff;
     overflow:hidden;
+    background:#000;
 }
 
 .bg-video{
     position:absolute;
-    top:0;
-    left:0;
+    inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    z-index:-2;
+    object-position:center center;
+    z-index:0;
 }
 
 .overlay{
     position:absolute;
-    width:100%;
-    height:100%;
+    inset:0;
     background:rgba(0,0,0,0.4);
-    z-index:-1;
+    z-index:1;
+}
+
+.hero > div:not(.overlay){
+    position:relative;
+    z-index:2;
 }
 
 .hero h1{
@@ -206,7 +213,7 @@ footer small{
 
 @media(max-width:768px){
     header{
-        padding:15px 15px;
+        padding:15px;
         align-items:center;
     }
 
@@ -218,7 +225,7 @@ footer small{
         display:flex;
         flex-direction:row;
         align-items:center;
-        gap:12px;
+        gap:10px;
     }
 
     nav a{
@@ -227,15 +234,15 @@ footer small{
     }
 
     .hero{
-        height:100svh;
-        min-height:100svh;
+        height:100dvh;
+        min-height:100dvh;
     }
 
     .bg-video{
-        width:100%;
-        height:100%;
+        width:100vw;
+        height:100dvh;
         object-fit:cover;
-        object-position:center;
+        object-position:center center;
     }
 
     .hero h1{
