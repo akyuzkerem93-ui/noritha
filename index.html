@@ -39,10 +39,10 @@ nav a{
     font-size:13px;
 }
 
-/* 🔥 BURASI DEĞİŞTİ */
+/* 🔥 HERO KISALTILDI */
 .hero{
     position:relative;
-    height:85vh;
+    height:78vh;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -63,19 +63,25 @@ nav a{
 .overlay{
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,0.4);
+    background:rgba(0,0,0,0.45);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
 .hero h1{
     font-family:"Times New Roman", serif;
     font-size:90px;
-    letter-spacing:8px;
+    letter-spacing:10px;
 }
 
 .hero p{
-    margin-top:15px;
-    letter-spacing:4px;
-    font-size:13px;
+    margin-top:12px;
+    letter-spacing:6px;
+    font-size:12px;
+    opacity:0.85;
 }
 
 /* SCROLL */
@@ -92,7 +98,7 @@ nav a{
 
 /* SECTION */
 .section{
-    padding:120px 10%;
+    padding:90px 10%;
     text-align:center;
 }
 
@@ -110,7 +116,7 @@ nav a{
 }
 
 .contact{
-    padding:120px 10%;
+    padding:100px 10%;
     background:#f5f5f5;
 }
 
@@ -183,7 +189,7 @@ footer small{
     color:#aaa;
 }
 
-/* 🔥 MOBİL FIX */
+/* 🔥 MOBİL */
 @media(max-width:768px){
     header{
         padding:15px;
@@ -205,7 +211,7 @@ footer small{
     }
 
     .hero{
-        height:75vh;
+        height:70vh;
     }
 
     .hero h1{
@@ -214,6 +220,7 @@ footer small{
 
     .hero p{
         font-size:10px;
+        letter-spacing:3px;
     }
 }
 </style>
@@ -238,7 +245,7 @@ footer small{
 
     <div class="overlay"></div>
 
-    <div>
+    <div class="hero-content">
         <h1>NORITHA</h1>
         <p>Minimal • Modern • Özgür</p>
     </div>
@@ -248,8 +255,7 @@ footer small{
     <h2>Hakkımda</h2>
     <p>
         Bu siteyi, minimal ve modern tasarım anlayışını yansıtan kişisel bir platform olarak oluşturdum. 
-        Amacım, gereksiz karmaşıklıktan uzak, sade ama aynı zamanda etkili bir site yapmaktı. 
-        Eğer benimle iletişime geçmek isterseniz, aşağıdaki form üzerinden kolayca ulaşabilirsiniz.
+        Amacım, gereksiz karmaşıklıktan uzak, sade ama aynı zamanda etkili bir dijital deneyim sunmak.
     </p>
 </section>
 
@@ -285,36 +291,6 @@ footer small{
 </footer>
 
 <script>
-const form = document.getElementById("contactForm");
-const message = document.getElementById("formMessage");
-const button = document.getElementById("submitBtn");
-
-form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    button.disabled = true;
-    button.textContent = "GÖNDERİLİYOR...";
-
-    const formData = new FormData(form);
-
-    try {
-        const response = await fetch(form.action, {
-            method: form.method,
-            body: formData
-        });
-
-        if (response.ok) {
-            message.style.display = "block";
-            message.textContent = "Mesajınız gönderildi.";
-            form.reset();
-        }
-    } catch (error) {}
-
-    button.disabled = false;
-    button.textContent = "GÖNDER";
-});
-
-/* SCROLL */
 const sections = document.querySelectorAll(".fade-section");
 
 const observer = new IntersectionObserver(entries => {
