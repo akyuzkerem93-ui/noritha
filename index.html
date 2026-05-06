@@ -15,6 +15,7 @@ body{
     font-family:Arial, sans-serif;
 }
 
+/* HEADER */
 header{
     position:fixed;
     width:100%;
@@ -39,6 +40,7 @@ nav a{
     font-size:13px;
 }
 
+/* HERO VIDEO */
 .hero{
     position:relative;
     height:100vh;
@@ -80,18 +82,7 @@ nav a{
     font-size:13px;
 }
 
-/* SCROLL ANIMATION */
-.fade-section{
-    opacity:0;
-    transform:translateY(45px);
-    transition:0.8s ease;
-}
-
-.fade-section.show{
-    opacity:1;
-    transform:translateY(0);
-}
-
+/* SECTION */
 .section{
     padding:120px 10%;
     text-align:center;
@@ -107,9 +98,9 @@ nav a{
     max-width:700px;
     margin:auto;
     color:#555;
-    line-height:1.7;
 }
 
+/* CONTACT */
 .contact{
     padding:120px 10%;
     background:#f5f5f5;
@@ -121,6 +112,7 @@ nav a{
     margin-bottom:40px;
 }
 
+/* INPUT */
 .input-box{
     position:relative;
     margin-bottom:20px;
@@ -172,31 +164,18 @@ button:hover{
     background:#333;
 }
 
-button:disabled{
-    opacity:0.7;
-    cursor:not-allowed;
-}
-
 #formMessage{
     display:none;
     text-align:center;
     margin-top:15px;
 }
 
-/* FOOTER DAHA YUKARI */
+/* FOOTER */
 footer{
     padding:20px;
     text-align:center;
     background:#000;
     color:white;
-}
-
-footer h2{
-    font-size:24px;
-}
-
-footer p{
-    margin-top:6px;
 }
 
 footer small{
@@ -217,14 +196,21 @@ footer small{
 
 <header>
     <div class="logo">Noritha</div>
+
     <nav>
         <a href="#about">Hakkımda</a>
         <a href="#contact">İletişim</a>
         <a href="#destek">Destek</a>
+
+        <!-- 🔥 LINKEDIN BURAYA EKLENDİ -->
+        <a href="https://www.linkedin.com/in/kerem-akyüz-a1815737b" target="_blank">
+            LinkedIn
+        </a>
     </nav>
 </header>
 
 <section class="hero">
+
     <video autoplay muted loop playsinline class="bg-video">
         <source src="video.mp4" type="video/mp4">
     </video>
@@ -235,9 +221,10 @@ footer small{
         <h1>NORITHA</h1>
         <p>Minimal • Modern • Özgür</p>
     </div>
+
 </section>
 
-<section class="section fade-section" id="about">
+<section class="section" id="about">
     <h2>Hakkımda</h2>
     <p>
         Bu siteyi, minimal ve modern tasarım anlayışını yansıtan kişisel bir platform olarak oluşturdum. 
@@ -246,10 +233,11 @@ footer small{
     </p>
 </section>
 
-<section class="contact fade-section" id="contact">
+<section class="contact" id="contact">
     <h2>Bana Ulaşın</h2>
 
     <form id="contactForm" action="https://formspree.io/f/xvzlrydr" method="POST">
+
         <div class="input-box">
             <input type="text" name="ad_soyad" placeholder="Ad Soyad" required>
         </div>
@@ -266,7 +254,8 @@ footer small{
             <textarea name="mesaj" rows="6" placeholder="Mesajınız" required></textarea>
         </div>
 
-        <button id="submitBtn" type="submit">GÖNDER</button>
+        <button type="submit">GÖNDER</button>
+
         <p id="formMessage"></p>
     </form>
 </section>
@@ -280,13 +269,9 @@ footer small{
 <script>
 const form = document.getElementById("contactForm");
 const message = document.getElementById("formMessage");
-const button = document.getElementById("submitBtn");
 
 form.addEventListener("submit", async function(e) {
     e.preventDefault();
-
-    button.disabled = true;
-    button.textContent = "GÖNDERİLİYOR...";
 
     const formData = new FormData(form);
 
@@ -307,14 +292,12 @@ form.addEventListener("submit", async function(e) {
             message.style.color = "red";
             message.textContent = "Bir hata oluştu.";
         }
+
     } catch (error) {
         message.style.display = "block";
         message.style.color = "red";
         message.textContent = "Bağlantı hatası.";
     }
-
-    button.disabled = false;
-    button.textContent = "GÖNDER";
 });
 
 /* MOBİL AUTOPLAY FIX */
@@ -324,21 +307,6 @@ document.addEventListener("DOMContentLoaded", function() {
         video.play().catch(()=>{});
     }
 });
-
-/* SCROLL ANİMASYON - SÜREKLİ */
-const sections = document.querySelectorAll(".fade-section");
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
-        } else {
-            entry.target.classList.remove("show");
-        }
-    });
-}, { threshold:0.2 });
-
-sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
