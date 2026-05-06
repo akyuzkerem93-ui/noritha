@@ -10,8 +10,9 @@
 html{scroll-behavior:smooth;}
 
 body{
-    font-family:Arial, sans-serif;
+    background:#fff;
     color:#000;
+    font-family:Arial, sans-serif;
 }
 
 /* HEADER */
@@ -32,6 +33,13 @@ header{
     letter-spacing:4px;
 }
 
+nav a{
+    margin-left:30px;
+    text-decoration:none;
+    color:#000;
+    font-size:13px;
+}
+
 /* HERO VIDEO */
 .hero{
     position:relative;
@@ -39,16 +47,18 @@ header{
     display:flex;
     align-items:center;
     justify-content:center;
+    text-align:center;
+    color:#fff;
     overflow:hidden;
 }
 
 .bg-video{
     position:absolute;
+    top:0;
+    left:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    top:0;
-    left:0;
     z-index:-2;
 }
 
@@ -61,72 +71,117 @@ header{
 }
 
 .hero h1{
-    color:white;
+    font-family:"Times New Roman", serif;
     font-size:90px;
     letter-spacing:8px;
-    font-family:"Times New Roman", serif;
 }
 
-/* ABOUT */
-.about{
+/* SECTION */
+.section{
     padding:120px 10%;
     text-align:center;
 }
 
-.about p{
+.section h2{
+    font-family:"Times New Roman", serif;
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.section p{
     max-width:700px;
     margin:auto;
-    line-height:1.7;
     color:#555;
 }
 
 /* CONTACT */
 .contact{
-    padding:100px 10%;
+    padding:120px 10%;
     background:#f5f5f5;
+}
+
+.contact h2{
     text-align:center;
+    font-size:42px;
+    margin-bottom:40px;
 }
 
-form{
-    max-width:600px;
-    margin:auto;
+/* NEON INPUT BOX */
+.input-box{
+    position:relative;
+    margin-bottom:20px;
+    border-radius:12px;
+    padding:2px;
+    background:linear-gradient(
+        270deg,
+        #00f0ff,
+        #0066ff,
+        #8a2be2,
+        #ff00ff,
+        #00f0ff
+    );
+    background-size:400% 400%;
+    animation:neonMove 6s linear infinite;
 }
 
-input, textarea{
+.input-box input,
+.input-box textarea{
     width:100%;
     padding:15px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
+    border:none;
+    border-radius:10px;
+    background:#fff;
+    outline:none;
 }
 
-/* BUTTON */
+.input-box:focus-within{
+    box-shadow:0 0 20px rgba(0,200,255,0.6);
+}
+
+@keyframes neonMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
 button{
     width:100%;
-    padding:15px;
+    padding:16px;
     background:#000;
     color:white;
     border:none;
     cursor:pointer;
+    letter-spacing:2px;
+    transition:0.3s;
 }
 
-/* MESSAGE */
+button:hover{
+    background:#333;
+}
+
 #formMessage{
     display:none;
-    margin-top:10px;
+    text-align:center;
+    margin-top:15px;
 }
 
-/* FOOTER */
 footer{
-    padding:60px;
+    padding:80px;
     text-align:center;
     background:#000;
     color:white;
 }
 
-/* MOBILE */
+footer small{
+    display:block;
+    margin-top:10px;
+    font-size:12px;
+    color:#aaa;
+}
+
 @media(max-width:768px){
+    nav{display:none;}
     .hero h1{font-size:45px;}
-    header{padding:20px;}
 }
 </style>
 </head>
@@ -135,9 +190,14 @@ footer{
 
 <header>
     <div class="logo">Noritha</div>
+    <nav>
+        <a href="#about">Hakkımda</a>
+        <a href="#contact">İletişim</a>
+        <a href="#destek">Destek</a>
+    </nav>
 </header>
 
-<!-- HERO VIDEO -->
+<!-- HERO VIDEO EKLENDİ -->
 <section class="hero">
 
     <video autoplay muted loop playsinline class="bg-video">
@@ -150,8 +210,8 @@ footer{
 
 </section>
 
-<!-- ABOUT -->
-<section class="about">
+<section class="section" id="about">
+    <h2>Hakkımda</h2>
     <p>
         Bu siteyi, minimal ve modern tasarım anlayışını yansıtan kişisel bir platform olarak oluşturdum. 
         Amacım, gereksiz karmaşıklıktan uzak, sade ama aynı zamanda etkili bir site yapmaktı. 
@@ -159,25 +219,36 @@ footer{
     </p>
 </section>
 
-<!-- CONTACT -->
-<section class="contact">
-
+<section class="contact" id="contact">
     <h2>Bana Ulaşın</h2>
 
     <form id="contactForm" action="https://formspree.io/f/xvzlrydr" method="POST">
-        <input type="text" name="ad" placeholder="Ad Soyad" required>
-        <input type="email" name="email" placeholder="E-posta" required>
-        <textarea name="mesaj" placeholder="Mesajınız" required></textarea>
-        <button type="submit">Gönder</button>
+
+        <div class="input-box">
+            <input type="text" name="ad_soyad" placeholder="Ad Soyad" required>
+        </div>
+
+        <div class="input-box">
+            <input type="email" name="email" placeholder="E-posta" required>
+        </div>
+
+        <div class="input-box">
+            <input type="text" name="konu" placeholder="Konu" required>
+        </div>
+
+        <div class="input-box">
+            <textarea name="mesaj" rows="6" placeholder="Mesajınız" required></textarea>
+        </div>
+
+        <button type="submit">GÖNDER</button>
 
         <p id="formMessage"></p>
     </form>
-
 </section>
 
-<footer>
-    info@noritha.com
-    <br><br>
+<footer id="destek">
+    <h2>DESTEK</h2>
+    <p>info@noritha.com</p>
     <small>Noritha 2026 © Tüm hakları saklıdır</small>
 </footer>
 
