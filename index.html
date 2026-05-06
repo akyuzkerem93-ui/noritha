@@ -40,7 +40,7 @@ nav a{
     font-size:13px;
 }
 
-/* HERO VIDEO */
+/* HERO */
 .hero{
     position:relative;
     height:100vh;
@@ -76,6 +76,25 @@ nav a{
     letter-spacing:8px;
 }
 
+.hero p{
+    margin-top:18px;
+    letter-spacing:4px;
+    font-size:13px;
+    text-transform:uppercase;
+}
+
+/* ANIMATION */
+.fade-section{
+    opacity:0;
+    transform:translateY(40px);
+    transition:0.8s ease;
+}
+
+.fade-section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
 /* SECTION */
 .section{
     padding:120px 10%;
@@ -92,6 +111,7 @@ nav a{
     max-width:700px;
     margin:auto;
     color:#555;
+    line-height:1.7;
 }
 
 /* CONTACT */
@@ -106,7 +126,7 @@ nav a{
     margin-bottom:40px;
 }
 
-/* NEON INPUT BOX */
+/* INPUT */
 .input-box{
     position:relative;
     margin-bottom:20px;
@@ -144,6 +164,7 @@ nav a{
     100%{background-position:0% 50%;}
 }
 
+/* BUTTON */
 button{
     width:100%;
     padding:16px;
@@ -152,19 +173,24 @@ button{
     border:none;
     cursor:pointer;
     letter-spacing:2px;
-    transition:0.3s;
 }
 
 button:hover{
     background:#333;
 }
 
+button:disabled{
+    opacity:0.7;
+}
+
+/* MESSAGE */
 #formMessage{
     display:none;
     text-align:center;
     margin-top:15px;
 }
 
+/* FOOTER */
 footer{
     padding:80px;
     text-align:center;
@@ -179,9 +205,11 @@ footer small{
     color:#aaa;
 }
 
+/* MOBILE */
 @media(max-width:768px){
     nav{display:none;}
     .hero h1{font-size:45px;}
+    .hero p{font-size:11px;}
 }
 </style>
 </head>
@@ -198,18 +226,18 @@ footer small{
 </header>
 
 <section class="hero">
-
     <video autoplay muted loop playsinline class="bg-video">
         <source src="video.mp4" type="video/mp4">
     </video>
-
     <div class="overlay"></div>
 
-    <h1>NORITHA</h1>
-
+    <div>
+        <h1>NORITHA</h1>
+        <p>Minimal • Modern • Personal</p>
+    </div>
 </section>
 
-<section class="section" id="about">
+<section class="section fade-section" id="about">
     <h2>Hakkımda</h2>
     <p>
         Bu siteyi, minimal ve modern tasarım anlayışını yansıtan kişisel bir platform olarak oluşturdum. 
@@ -218,11 +246,10 @@ footer small{
     </p>
 </section>
 
-<section class="contact" id="contact">
+<section class="contact fade-section" id="contact">
     <h2>Bana Ulaşın</h2>
 
     <form id="contactForm" action="https://formspree.io/f/xvzlrydr" method="POST">
-
         <div class="input-box">
             <input type="text" name="ad_soyad" placeholder="Ad Soyad" required>
         </div>
@@ -239,24 +266,27 @@ footer small{
             <textarea name="mesaj" rows="6" placeholder="Mesajınız" required></textarea>
         </div>
 
-        <button type="submit">GÖNDER</button>
-
+        <button id="submitBtn" type="submit">GÖNDER</button>
         <p id="formMessage"></p>
     </form>
 </section>
 
 <footer id="destek">
     <h2>DESTEK</h2>
-    <p>info@noritha.com</p>
+    <p>support@noritha.com</p>
     <small>Noritha 2026 © Tüm hakları saklıdır</small>
 </footer>
 
 <script>
 const form = document.getElementById("contactForm");
 const message = document.getElementById("formMessage");
+const button = document.getElementById("submitBtn");
 
 form.addEventListener("submit", async function(e) {
     e.preventDefault();
+
+    button.disabled = true;
+    button.textContent = "GÖNDERİLİYOR...";
 
     const formData = new FormData(form);
 
@@ -283,15 +313,25 @@ form.addEventListener("submit", async function(e) {
         message.style.color = "red";
         message.textContent = "Bağlantı hatası.";
     }
+
+    button.disabled = false;
+    button.textContent = "GÖNDER";
 });
 
-/* 🔥 MOBİL AUTOPLAY FIX */
-document.addEventListener("DOMContentLoaded", function() {
-    const video = document.querySelector(".bg-video");
-    if(video){
-        video.play().catch(()=>{});
-    }
-});
+/* 🔄 SÜREKLİ SCROLL ANİMASYON */
+const sections = document.querySelectorAll(".fade-section");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("show");
+        } else {
+            entry.target.classList.remove("show");
+        }
+    });
+}, { threshold: 0.2 });
+
+sections.forEach(section => observer.observe(section));
 </script>
 
 </body>
