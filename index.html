@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noritha</title>
+
 <style>
 body{
     margin:0;
@@ -16,11 +23,11 @@ body{
     align-items:center;
     text-align:center;
     background: linear-gradient(135deg, #0f172a, #111827);
-    padding:10px; /* AZALTILDI */
+    padding:10px;
 }
 
 .hero h1{
-    font-size:52px;
+    font-size:54px;
     margin:0;
 }
 
@@ -33,13 +40,13 @@ body{
 
 /* SECTIONS */
 .section{
-    min-height:70vh; /* 🔥 BOŞLUK AZALTILDI */
+    min-height:70vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     text-align:center;
-    padding:25px 10px; /* 🔥 AZALTILDI */
+    padding:25px 10px;
 
     opacity:0;
     transform: translateY(30px);
@@ -68,7 +75,7 @@ body{
     display:flex;
     flex-wrap:wrap;
     justify-content:center;
-    gap:10px; /* AZALTILDI */
+    gap:10px;
 }
 
 .card{
@@ -92,3 +99,54 @@ footer{
     font-size:13px;
 }
 </style>
+
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>Noritha</h1>
+    <p>Minimal, sade ve akıcı bir web deneyimi.</p>
+</div>
+
+<div class="section">
+    <h2>Hakkında</h2>
+    <p>Modern tasarım ve temiz yapı ile hazırlanmış sade bir web sitesi.</p>
+</div>
+
+<div class="section">
+    <h2>Özellikler</h2>
+    <div class="container">
+        <div class="card">Temiz Tasarım</div>
+        <div class="card">Hızlı Yapı</div>
+        <div class="card">Mobil Uyum</div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>İletişim</h2>
+    <p>Basit, hızlı ve modern bir deneyim.</p>
+</div>
+
+<footer>
+    © 2026 Noritha
+</footer>
+
+<script>
+const sections = document.querySelectorAll('.section');
+
+window.addEventListener('scroll', () => {
+    const trigger = window.innerHeight * 0.88;
+
+    sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+
+        if(top < trigger){
+            sec.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
