@@ -27,7 +27,6 @@ header{
     transition:0.3s;
 }
 
-/* 🔥 EKLENDİ */
 header.scrolled{
     padding:15px 60px;
     background:rgba(255,255,255,0.97);
@@ -38,6 +37,11 @@ header.scrolled{
     font-family:"Times New Roman", serif;
     font-size:32px;
     letter-spacing:4px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
 }
 
 nav a{
@@ -91,6 +95,7 @@ nav a{
     opacity:0.85;
 }
 
+/* ANIMATION */
 .fade-section{
     opacity:0;
     transform:translateY(45px);
@@ -194,13 +199,13 @@ footer small{
     color:#aaa;
 }
 
+/* MOBİL */
 @media(max-width:768px){
     header{
         padding:15px;
         align-items:center;
     }
 
-    /* 🔥 MOBİL SCROLL */
     header.scrolled{
         padding:12px 15px;
     }
@@ -210,7 +215,6 @@ footer small{
     }
 
     nav{
-        display:flex;
         gap:10px;
     }
 
@@ -224,8 +228,6 @@ footer small{
     }
 
     .bg-video{
-        width:100%;
-        height:100%;
         object-fit:cover;
         transform:scale(1.25);
     }
@@ -267,35 +269,38 @@ footer small{
     </div>
 </section>
 
+<!-- 🔥 DÜZELTİLMİŞ HAKKIMDA -->
 <section class="section fade-section" id="about">
     <h2>Hakkımda</h2>
     <p>
         Bu siteyi, minimal ve modern tasarım anlayışını yansıtan kişisel bir platform olarak oluşturdum. 
-        Amacım, gereksiz karmaşıklıktan uzak, sade ama aynı zamanda etkili bir dijital deneyim sunmak.
+        Amacım, gereksiz karmaşıklıktan uzak, sade ama aynı zamanda etkili bir site yapmaktı. 
+        Eğer benimle iletişime geçmek isterseniz, aşağıdaki form üzerinden kolayca ulaşabilirsiniz.
     </p>
 </section>
 
 <section class="contact fade-section" id="contact">
     <h2>Bana Ulaşın</h2>
 
-    <form>
+    <form id="contactForm" action="https://formspree.io/f/xvzlrydr" method="POST">
         <div class="input-box">
-            <input type="text" placeholder="Ad Soyad" required>
+            <input type="text" name="ad_soyad" placeholder="Ad Soyad" required>
         </div>
 
         <div class="input-box">
-            <input type="email" placeholder="E-posta" required>
+            <input type="email" name="email" placeholder="E-posta" required>
         </div>
 
         <div class="input-box">
-            <input type="text" placeholder="Konu" required>
+            <input type="text" name="konu" placeholder="Konu" required>
         </div>
 
         <div class="input-box">
-            <textarea rows="6" placeholder="Mesajınız" required></textarea>
+            <textarea name="mesaj" rows="6" placeholder="Mesajınız" required></textarea>
         </div>
 
-        <button type="submit">GÖNDER</button>
+        <button id="submitBtn" type="submit">GÖNDER</button>
+        <p id="formMessage"></p>
     </form>
 </section>
 
@@ -321,7 +326,7 @@ const observer = new IntersectionObserver(entries => {
 
 sections.forEach(section => observer.observe(section));
 
-/* 🔥 HEADER SCROLL */
+/* HEADER SCROLL */
 window.addEventListener("scroll", function(){
     const header = document.querySelector("header");
 
