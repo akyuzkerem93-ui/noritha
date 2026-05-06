@@ -3,146 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Noritha - İletişim</title>
+<title>Noritha</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+    background:#fff;
+    color:#000;
+    font-family: Arial, sans-serif;
 }
 
-body {
-    background: #f5f3ef;
-    color: #2c3e3a;
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:25px 55px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.9);
 }
 
-/* HEADER */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 60px;
+.logo{
+    font-family:"Times New Roman", serif;
+    font-size:32px;
+    letter-spacing:3px;
 }
 
-.logo {
-    font-size: 30px;
-    font-weight: bold;
+nav a{
+    margin-left:30px;
+    text-decoration:none;
+    color:#000;
+    font-size:14px;
 }
 
 /* HERO */
-.hero {
-    padding: 60px;
+.hero{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
+.hero h1{
+    font-family:"Times New Roman", serif;
+    font-size:70px;
+    letter-spacing:5px;
 }
 
-.hero p {
-    font-size: 18px;
-    color: #555;
+/* SECTION */
+.section{
+    padding:100px 60px;
+    text-align:center;
 }
 
-/* FORM */
-.container {
-    padding: 60px;
+/* CONTACT */
+.contact{
+    padding:80px 60px;
+    background:#f5f5f5;
 }
 
-form {
-    background: #f0ede8;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+.contact h2{
+    font-family:"Times New Roman", serif;
+    font-size:42px;
+    margin-bottom:30px;
+    text-align:center;
 }
 
-.row {
-    display: flex;
-    gap: 20px;
+form{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border:1px solid #ddd;
 }
 
-.input-group {
-    width: 100%;
-    margin-bottom: 20px;
+.row{
+    display:flex;
+    gap:20px;
 }
 
-label {
-    margin-bottom: 8px;
-    display: block;
+.input-group{
+    width:100%;
+    margin-bottom:20px;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: white;
-    transition: 0.2s;
+label{
+    display:block;
+    margin-bottom:8px;
 }
 
-input:focus, textarea:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #2f5d50;
+input, textarea{
+    width:100%;
+    padding:15px;
+    border:1px solid #ccc;
 }
 
-/* BUTTON */
-button {
-    width: 100%;
-    padding: 16px;
-    border: none;
-    background: #2f5d50;
-    color: white;
-    font-size: 16px;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: 0.3s;
+button{
+    width:100%;
+    padding:16px;
+    background:#000;
+    color:white;
+    border:none;
+    cursor:pointer;
 }
 
-button:hover {
-    background: #24463c;
+/* TABLE */
+.table-section{
+    padding:90px 60px;
 }
 
-/* INFO SECTION */
-.info {
-    padding: 60px;
-    display: flex;
-    gap: 40px;
+.table-section h2{
+    font-family:"Times New Roman", serif;
+    font-size:40px;
+    text-align:center;
+    margin-bottom:35px;
 }
 
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    flex: 1;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+table{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    border-collapse:collapse;
 }
 
-.card h3 {
-    margin-bottom: 10px;
+th, td{
+    padding:16px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+}
+
+th{
+    background:#000;
+    color:white;
+}
+
+td:nth-child(2){
+    text-align:left;
 }
 
 /* FOOTER */
-footer {
-    padding: 60px;
+footer{
+    padding:70px;
+    text-align:center;
+    background:#000;
+    color:white;
 }
 
-footer h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+footer small{
+    display:block;
+    margin-top:10px;
+    color:#aaa;
+    font-size:12px;
 }
 
-footer p {
-    font-size: 18px;
-    color: #555;
-}
-
-/* MOBILE */
-@media(max-width: 768px){
-    .row, .info {
-        flex-direction: column;
-    }
+@media(max-width:768px){
+    nav{display:none;}
+    .row{flex-direction:column;}
 }
 </style>
 </head>
@@ -151,14 +173,20 @@ footer p {
 
 <header>
     <div class="logo">Noritha</div>
+    <nav>
+        <a href="#contact">Bana Ulaşın</a>
+        <a href="#puan">Süper Lig</a>
+        <a href="#destek">Destek</a>
+    </nav>
 </header>
 
 <section class="hero">
-    <h1>İletişim</h1>
-    <p>Bizimle iletişime geçmek için aşağıdaki formu doldurabilirsiniz.</p>
+    <h1>NORITHA</h1>
 </section>
 
-<section class="container">
+<section class="contact" id="contact">
+    <h2>Bana Ulaşın</h2>
+
     <form>
         <div class="row">
             <div class="input-group">
@@ -182,30 +210,34 @@ footer p {
             <textarea name="mesaj" rows="6" required></textarea>
         </div>
 
-        <button type="submit">Gönder</button>
+        <button type="submit">GÖNDER</button>
     </form>
 </section>
 
-<section class="info">
-    <div class="card">
-        <h3>Hızlı Destek</h3>
-        <p>Size en kısa sürede geri dönüş yapıyoruz.</p>
-    </div>
+<section class="table-section" id="puan">
+    <h2>Süper Lig Puan Tablosu</h2>
 
-    <div class="card">
-        <h3>Güvenli İletişim</h3>
-        <p>Bilgileriniz gizli tutulur ve paylaşılmaz.</p>
-    </div>
-
-    <div class="card">
-        <h3>7/24 Ulaşım</h3>
-        <p>İstediğiniz zaman bize yazabilirsiniz.</p>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Takım</th>
+                <th>P</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Galatasaray</td><td>74</td></tr>
+            <tr><td>2</td><td>Fenerbahçe</td><td>70</td></tr>
+            <tr><td>3</td><td>Trabzonspor</td><td>66</td></tr>
+            <tr><td>4</td><td>Beşiktaş</td><td>59</td></tr>
+        </tbody>
+    </table>
 </section>
 
-<footer>
+<footer id="destek">
     <h2>DESTEK</h2>
     <p>support@noritha.com</p>
+    <small>Noritha 2026 © Tüm hakları saklıdır</small>
 </footer>
 
 </body>
