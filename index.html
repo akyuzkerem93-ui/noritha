@@ -197,7 +197,6 @@ footer small{
     </nav>
 </header>
 
-<!-- HERO VIDEO EKLENDİ -->
 <section class="hero">
 
     <video autoplay muted loop playsinline class="bg-video">
@@ -283,6 +282,14 @@ form.addEventListener("submit", async function(e) {
         message.style.display = "block";
         message.style.color = "red";
         message.textContent = "Bağlantı hatası.";
+    }
+});
+
+/* 🔥 MOBİL AUTOPLAY FIX */
+document.addEventListener("DOMContentLoaded", function() {
+    const video = document.querySelector(".bg-video");
+    if(video){
+        video.play().catch(()=>{});
     }
 });
 </script>
